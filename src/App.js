@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthResult from "./pages/AuthResult";
 import MainPage from "./pages/MainPage";
-
+import AccountList from "./pages/AccountList";
+import Balance from "./pages/Balance";
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +19,8 @@ function App() {
         <Route path="/news" element={<NewsSearch></NewsSearch>}></Route> */}
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/authResult" element={<AuthResult></AuthResult>}></Route>
+        <Route path="/list" element={<AccountList />}></Route>
+        <Route path="/balance" element={<Balance />}></Route>
       </Routes>
     </BrowserRouter>
   );
