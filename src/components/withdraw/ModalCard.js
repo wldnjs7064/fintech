@@ -38,9 +38,45 @@ const ModalCard = ({ bankName, fintechUseNo, tofintechno }) => {
     return transId;
   };
 
-  //출금 이체 기능 작성
-  //A0000 일때 alert("출금 완료")
-  const handlePayButtonClick = () => {};
+  const handlePayButtonClick = () => {
+    console.log(amount);
+    const accessToken = localStorage.getItem("accessToken");
+
+    const data = {
+      bank_tran_id: genTransId(),
+      cntr_account_type: "N",
+      cntr_account_num: "100000000001",
+      dps_print_content: "쇼핑몰환불",
+      fintech_use_num: fintechUseNo,
+      wd_print_content: "오픈뱅킹출금",
+      tran_amt: amount,
+      tran_dtime: "20230802130000",
+      req_client_name: "홍길동",
+      req_client_fintech_use_num: fintechUseNo,
+      req_client_num: "HONGGILDONG1234",
+      transfer_purpose: "ST",
+      recv_client_name: "홍길동",
+      recv_client_bank_code: "097",
+      recv_client_account_num: "100000000001",
+    };
+
+    console.log(data);
+
+    const option = {
+      method: "POST",
+      url: "/v2.0/transfer/withdraw/fin_num",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: data,
+    };
+    axios(option).then(({ data }) => {
+      console.log(data);
+      if (data.rsp_code === "A0000") {
+        alert("출금 완료");
+      }
+    });
+  };
 
   const handleChange = (e) => {
     const { value } = e.target;
