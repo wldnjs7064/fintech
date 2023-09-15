@@ -13,8 +13,6 @@ const AuthResult = () => {
   const [userSeqNo, setUserSeqNo] = useState("");
 
   const handleClick = () => {
-    const client_id = "";
-    const client_secret = "";
     let requestOption = {
       url: "/oauth/2.0/token",
       method: "POST",
@@ -23,9 +21,9 @@ const AuthResult = () => {
       },
       data: {
         code: code,
-        client_id: `${client_id}`,
-        client_secret: `${client_secret}`,
-        redirect_uri: "http://localhost:3004/authResult",
+        client_id: "",
+        client_secret: "",
+        redirect_uri: "http://localhost:3000/authResult",
         grant_type: "authorization_code",
       },
     };
@@ -39,7 +37,6 @@ const AuthResult = () => {
       } else {
         alert("인증에 실패했습니다 다시 시도해 주세요");
       }
-      console.log(data);
     });
   };
 
